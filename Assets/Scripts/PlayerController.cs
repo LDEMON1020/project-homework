@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private Animator pAni;
     private bool isGrounded;
 
+    private bool isGiant = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -25,17 +27,25 @@ public class PlayerController : MonoBehaviour
     {
         float moveInput = Input.GetAxisRaw("Horizontal");
         rb.velocity = new Vector2(moveInput * moveSpeed, rb.velocity.y);
-
-        if (moveInput > 0)
+        if (isGiant)
         {
-            transform.localScale = new Vector3(1f, 1f, 1f);
+            if (moveInput < 0)
+transform.localScale = new Vector3(2f, 2f, 1f);
+            if (moveInput > 0)
+                transform.localScale = new Vector3(-2f, 2f, 1f);
         }
-
-        if (moveInput < 0)
+        else
         {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
+            if (moveInput > 0)
+            {
+                transform.localScale = new Vector3(1f, 1f, 1f);
+            }
 
+            if (moveInput < 0)
+            {
+                transform.localScale = new Vector3(-1f, 1f, 1f);
+            }
+        }
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
 
         if (isGrounded && Input.GetKeyDown(KeyCode.Space))

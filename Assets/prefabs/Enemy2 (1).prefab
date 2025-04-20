@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9cc1323e1ff8704389da464807fb5a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.5
-  raycastDistance: 0.2
-  traceDistance: 1
+  moveSpeed: 0.25
+  raycastDistance: 10
+  traceDistance: 2
 --- !u!61 &627195638880389101
 BoxCollider2D:
   m_ObjectHideFlags: 0
